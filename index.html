@@ -48,8 +48,10 @@ h1{
 	padding-top: 5px;
 	font-size: 16px;
 }
+.heart{margin-top:unset;}
   </style>
-<h1 id="message">&hearts; Baby Kapoor &hearts;</h1>
+<h1 id="message">Baby Kapoor</h1>
+<h1 class="heart">&hearts;</h1>
 <div id="clockdiv">
   <div>
     <span class="days"></span>
@@ -88,7 +90,7 @@ h1{
   
   if (seconds < 1 && minutes == 0 && hours == 0 && days == 0){
 	clearInterval(timerId);
-	document.getElementById("message").innerHTML = '&hearts; Happy Birthday Baby Kapoor &hearts;'
+	document.getElementById("message").innerHTML = 'Happy Birthday Baby Kapoor'
 	milliseconds = 0;
     seconds	     = 0;
 	minutes      = 0;
