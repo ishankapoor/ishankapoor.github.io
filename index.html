@@ -67,10 +67,6 @@ h1{
     <span class="seconds"></span>
     <div class="smalltext">Seconds</div>
   </div>
-    <div>
-    <span class="milliseconds"></span>
-    <div class="smalltext">Milliseconds</div>
-  </div>
 </div>
 
 
@@ -98,8 +94,7 @@ h1{
 	minutes      = 0;
 	hours        = 0;
 	days         = 0;
-   }
-   document.getElementsByClassName("milliseconds")[0].innerHTML = ('000' + milliseconds).slice(-3);
+   }   
    document.getElementsByClassName("seconds")[0].innerHTML = ('0' + seconds).slice(-2);
    document.getElementsByClassName("minutes")[0].innerHTML = ('0' + minutes).slice(-2);;
    document.getElementsByClassName("hours")[0].innerHTML   = ('0' + hours).slice(-2);;
