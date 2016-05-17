@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>countdown</title>
+  </head>
+  <body>
+  
+  <style>
+  body{
+	text-align: center;
+	background: #00ECB9;
+  font-family: sans-serif;
+  font-weight: 100;
+}
+
+h1{
+  color: #396;
+  font-weight: 100;
+  font-size: 40px;
+  margin: 40px 0px 20px;
+}
+
+#clockdiv{
+	font-family: sans-serif;
+	color: #fff;
+	display: inline-block;
+	font-weight: 100;
+	text-align: center;
+	font-size: 30px;
+}
+
+#clockdiv > div{
+	padding: 10px;
+	border-radius: 3px;
+	background: #00BF96;
+	display: inline-block;
+}
+
+#clockdiv div > span{
+	padding: 15px;
+	border-radius: 3px;
+	background: #00816A;
+	display: inline-block;
+}
+
+.smalltext{
+	padding-top: 5px;
+	font-size: 16px;
+}
+  </style>
+<h1 id="message">&hearts; Baby Kapoor &hearts;</h1>
+<div id="clockdiv">
+  <div>
+    <span class="days"></span>
+    <div class="smalltext">Days</div>
+  </div>
+  <div>
+    <span class="hours"></span>
+    <div class="smalltext">Hours</div>
+  </div>
+  <div>
+    <span class="minutes"></span>
+    <div class="smalltext">Minutes</div>
+  </div>
+  <div>
+    <span class="seconds"></span>
+    <div class="smalltext">Seconds</div>
+  </div>
+    <div>
+    <span class="milliseconds"></span>
+    <div class="smalltext">Milliseconds</div>
+  </div>
+</div>
+
+
+  <script>
+   //var baby     = new Date(2016,06,13);
+   var baby       = new Date(Date.parse(new Date()) + 5 * 1000)
+   var timerId;
+   
+   function updateCounter(){
+   var now      = new Date();
+   var diff     = baby - now;
+   var diffDate = new Date(baby - now);
+   
+  var milliseconds = diffDate.getMilliseconds();  
+  var seconds = Math.floor((diffDate / 1000) % 60);
+  var minutes = Math.floor((diffDate / 1000 / 60) % 60);
+  var hours   = Math.floor((diffDate / (1000 * 60 * 60)) % 24);
+  var days    = Math.floor(diffDate / (1000 * 60 * 60 * 24));
+  
+  if (seconds < 1 && minutes == 0 && hours == 0 && days == 0){
+	clearInterval(timerId);
+	document.getElementById("message").innerHTML = '&hearts; Happy Birthday Baby Kapoor &hearts;'
+	milliseconds = 0;
+    seconds	     = 0;
+	minutes      = 0;
+	hours        = 0;
+	days         = 0;
+   }
+   document.getElementsByClassName("milliseconds")[0].innerHTML = ('000' + milliseconds).slice(-3);
+   document.getElementsByClassName("seconds")[0].innerHTML = ('0' + seconds).slice(-2);
+   document.getElementsByClassName("minutes")[0].innerHTML = ('0' + minutes).slice(-2);;
+   document.getElementsByClassName("hours")[0].innerHTML   = ('0' + hours).slice(-2);;
+   document.getElementsByClassName("days")[0].innerHTML    = ('0' + days).slice(-2);;
+   }
+   timerId = setInterval(updateCounter, 25);
+  </script>
+</html>
