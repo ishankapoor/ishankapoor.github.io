@@ -72,41 +72,57 @@ h1{
   </style>
 <h1 id="message">Baby Kapoor</h1>
 <div id="clockdiv">
-  <div>
-    <span class="days"></span><div class="smalltext">Days</div></div><div><span class="hours"></span><div class="smalltext">Hours</div></div><div><span class="minutes"></span><div class="smalltext">Minutes</div></div><div><span class="seconds"></span><div class="smalltext">Seconds</div>
+  <div id="months" style="display: none;">
+    <span class="months"></span>
+	<div class="smalltext">Months</div>
+  </div>
+  <div id="days">
+    <span class="days"></span>
+	<div class="smalltext">Days</div>
+  </div>
+  <div><span class="hours"></span>
+    <div class="smalltext">Hours</div>
+  </div>
+  <div><span class="minutes"></span>
+    <div class="smalltext">Minutes</div>
+  </div>
+  <div id="seconds"><span class="seconds"></span>
+  <div class="smalltext">Seconds</div>
   </div>
 </div>
+<h1>old now</h1>
 <h1>&hearts;</h1>
 
+
   <script>
-   var baby     = new Date(2016,06,13);
-   //var baby       = new Date(Date.parse(new Date()) + 5 * 1000)
+
+   var baby     = new Date(Date.UTC(2016,06,11,13,3,0));
    var timerId;
-   
    function updateCounter(){
-   var now      = new Date();
-   var diff     = baby - now;
-   var diffDate = new Date(baby - now);
+	var now      = new Date();
+    var diffDate = new Date(now - baby);
    
-  var milliseconds = diffDate.getMilliseconds();  
-  var seconds = Math.floor((diffDate / 1000) % 60);
-  var minutes = Math.floor((diffDate / 1000 / 60) % 60);
-  var hours   = Math.floor((diffDate / (1000 * 60 * 60)) % 24);
-  var days    = Math.floor(diffDate / (1000 * 60 * 60 * 24));
-  
-  if (seconds < 1 && minutes == 0 && hours == 0 && days == 0){
-	clearInterval(timerId);
-	document.getElementById("message").innerHTML = 'Happy Birthday Baby Kapoor'
-	milliseconds = 0;
-    seconds	     = 0;
-	minutes      = 0;
-	hours        = 0;
-	days         = 0;
-   }   
-   document.getElementsByClassName("seconds")[0].innerHTML = ('0' + seconds).slice(-2);
-   document.getElementsByClassName("minutes")[0].innerHTML = ('0' + minutes).slice(-2);;
-   document.getElementsByClassName("hours")[0].innerHTML   = ('0' + hours).slice(-2);;
-   document.getElementsByClassName("days")[0].innerHTML    = ('0' + days).slice(-2);;
+    var milliseconds = diffDate.getMilliseconds();  
+    var seconds = Math.abs(Math.floor((diffDate / 1000) % 60));
+    var minutes = Math.abs(Math.floor((diffDate / 1000 / 60) % 60));
+    var hours   = Math.abs(Math.floor((diffDate / (1000 * 60 * 60)) % 24));
+	var days    = diffDate.getDate();
+	var months  = diffDate.getMonth();
+
+    if (now != baby){
+     document.getElementById("message").innerHTML = 'Shanaya Kapoor'
+    }
+    if (months){
+     document.getElementById('months').style.display  = 'inline-block';
+     document.getElementById('seconds').style.display = 'none';
+    }
+    document.getElementsByClassName("seconds")[0].innerHTML = ('0' + seconds).slice(-2);
+    document.getElementsByClassName("minutes")[0].innerHTML = ('0' + minutes).slice(-2);
+    document.getElementsByClassName("hours")[0].innerHTML   = ('0' + hours).slice(-2);
+    document.getElementsByClassName("days")[0].innerHTML    = ('0' + days).slice(-2);
+    if (months){
+     document.getElementsByClassName("months")[0].innerHTML  = ('0' + months).slice(-2);
+    }
    }
    timerId = setInterval(updateCounter, 25);
   </script>
