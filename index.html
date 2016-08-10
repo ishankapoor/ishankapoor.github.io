@@ -107,7 +107,7 @@ h1{
     var seconds = Math.abs(Math.floor((diffDate / 1000) % 60));
     var minutes = Math.abs(Math.floor((diffDate / 1000 / 60) % 60));
     var hours   = Math.abs(Math.floor((diffDate / (1000 * 60 * 60)) % 24));
-	var days    = diffDate.getDate() - 1;
+	var days    = diffDate.getDate();
 	var months  = diffDate.getMonth();
 
     if (now != baby){
