@@ -71,9 +71,14 @@ h1{
 }
 
   </style>
-<h1 id="message">Baby Kapoor</h1>
+<h1 id="message">Shanaya Kapoor</h1>
 <div id="clockdiv">
-  <div id="months" style="display: none;">
+  <div id="years" >
+    <span class="years"></span>
+	<div class="smalltext">Years</div>
+  </div>
+
+  <div id="months">
     <span class="months"></span>
 	<div class="smalltext">Months</div>
   </div>
@@ -81,50 +86,51 @@ h1{
     <span class="days"></span>
 	<div class="smalltext">Days</div>
   </div>
-  <div><span class="hours"></span>
-    <div class="smalltext">Hours</div>
+  <div id="hours">
+    <span class="hours"></span>
+	<div class="smalltext">Hours</div>
   </div>
-  <div><span class="minutes"></span>
-    <div class="smalltext">Minutes</div>
-  </div>
-  <div id="seconds"><span class="seconds"></span>
-  <div class="smalltext">Seconds</div>
-  </div>
+
 </div>
 <h1>old now</h1>
 <h1>&hearts;</h1>
-
-
   <script>
+function calculateMonths(babyDate, currentDate){
+ var months = currentDate.getMonth() - babyDate.getMonth();
 
-   var baby     = new Date(Date.UTC(2016,06,11,13,3,0));
-   var timerId;
-   function updateCounter(){
-	var now      = new Date();
-    var diffDate = new Date(now - baby);
+ if(currentDate.getMonth() < babyDate.getMonth()){
+    months = 12 - (currentDate.getMonth() - babyDate.getMonth());
+ } else {
+   months =  currentDate.getMonth() - babyDate.getMonth();
+ }
+ return months;
+}
+
+function calculateDays(babyDate, currentDate){
+ var days;
+ if(currentDate.getDate() >= babyDate.getDate()){
+	days = currentDate.getDate() - babyDate.getDate()
+ } else {
+    var diffDate = new Date(currentDate - babyDate);
+	days = diffDate.getDate()
+ }
+return days;
+}
+    var baby         = new Date(Date.UTC(2016,06,11,13,3,0));
+	var now          = new Date();
+    var diffDate     = new Date(now - baby);
    
     var milliseconds = diffDate.getMilliseconds();  
-    var seconds = Math.abs(Math.floor((diffDate / 1000) % 60));
-    var minutes = Math.abs(Math.floor((diffDate / 1000 / 60) % 60));
-    var hours   = Math.abs(Math.floor((diffDate / (1000 * 60 * 60)) % 24));
-	var days    = diffDate.getDate();
-	var months  = diffDate.getMonth();
+    var minutes      = Math.abs(Math.floor((diffDate / 1000 / 60) % 60));
+    var hours        = Math.abs(Math.floor((diffDate / (1000 * 60 * 60)) % 24));
+	var days         = calculateDays(baby, now);
+	var months       = calculateMonths(baby, now);
+	var years        = diffDate.getUTCFullYear() - 1970;
 
-    if (now != baby){
-     document.getElementById("message").innerHTML = 'Shanaya Kapoor'
-    }
-    if (months){
-     document.getElementById('months').style.display  = 'inline-block';
-     document.getElementById('seconds').style.display = 'none';
-    }
-    document.getElementsByClassName("seconds")[0].innerHTML = ('0' + seconds).slice(-2);
-    document.getElementsByClassName("minutes")[0].innerHTML = ('0' + minutes).slice(-2);
     document.getElementsByClassName("hours")[0].innerHTML   = ('0' + hours).slice(-2);
     document.getElementsByClassName("days")[0].innerHTML    = ('0' + days).slice(-2);
-    if (months){
-     document.getElementsByClassName("months")[0].innerHTML  = ('0' + months).slice(-2);
-    }
-   }
-   timerId = setInterval(updateCounter, 25);
+    document.getElementsByClassName("months")[0].innerHTML  = ('0' + months).slice(-2);
+	document.getElementsByClassName("years")[0].innerHTML  = ('0' + years).slice(-2);
+
   </script>
 </html>
