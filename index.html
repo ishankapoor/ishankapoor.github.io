@@ -103,6 +103,10 @@ function calculateMonths(babyDate, currentDate){
  } else {
    months =  currentDate.getMonth() - babyDate.getMonth();
  }
+	if (currentDate.getDate() < babyDate.getDate()){
+		months = months - 1;
+	}
+	
  return months;
 }
 
