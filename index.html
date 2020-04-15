@@ -95,36 +95,32 @@ h1{
 <h1>old now</h1>
 <h1>&hearts;</h1>
   <script>
-function calculateMonths(babyDate, currentDate){
- var months = currentDate.getMonth() - babyDate.getMonth();
+	  function calculateMonths(babyDate, currentDate){
+		   var months = currentDate.getMonth() - babyDate.getMonth();
 
- if(currentDate.getMonth() < babyDate.getMonth()){
-    months = 12 + (currentDate.getMonth() - babyDate.getMonth());
- } else {
-   months =  currentDate.getMonth() - babyDate.getMonth();
- }
-	if (currentDate.getDate() < babyDate.getDate()){
-		months = months - 1;
-	}
-	
- return months;
-}
+		   if(currentDate.getMonth() < babyDate.getMonth()){
+          months = 6 - (currentDate.getMonth() - babyDate.getMonth());
+       } else {
+         months =  currentDate.getMonth() - babyDate.getMonth();
+       }
+       return months;
+      }
 
-function calculateDays(babyDate, currentDate){
- var days;
- if(currentDate.getDate() >= babyDate.getDate()){
-	days = currentDate.getDate() - babyDate.getDate()
- } else {
-    var diffDate = new Date(currentDate - babyDate);
-	days = diffDate.getDate()
- }
-return days;
-}
+      function calculateDays(babyDate, currentDate){
+       var days;
+       if(currentDate.getDate() >= babyDate.getDate()){
+	       	days = currentDate.getDate() - babyDate.getDate()
+	        } else {
+			    var diffDate = new Date(currentDate - babyDate);
+				days = diffDate.getDate()
+			 }
+	      return days;
+      }
     var baby         = new Date(Date.UTC(2016,06,11,13,3,0));
 	var now          = new Date();
     var diffDate     = new Date(now - baby);
    
-    var milliseconds = diffDate.getMilliseconds();  
+
     var minutes      = Math.abs(Math.floor((diffDate / 1000 / 60) % 60));
     var hours        = Math.abs(Math.floor((diffDate / (1000 * 60 * 60)) % 24));
 	var days         = calculateDays(baby, now);
