@@ -73,21 +73,42 @@ h1{
   </style>
 <h1 id="message">Shanaya Kapoor</h1>
 <div id="clockdiv">
-  <div id="years" >
-    <span class="years"></span>
+  <div id="Shanayayears" >
+    <span class="Shanayayears"></span>
 	<div class="smalltext">Years</div>
   </div>
 
-  <div id="months">
-    <span class="months"></span>
+  <div id="Shanayamonths">
+    <span class="Shanayamonths"></span>
 	<div class="smalltext">Months</div>
   </div>
-  <div id="days">
-    <span class="days"></span>
+  <div id="Shanayadays">
+    <span class="Shanayadays"></span>
 	<div class="smalltext">Days</div>
   </div>
-  <div id="hours">
-    <span class="hours"></span>
+  <div id="Shanayahours">
+    <span class="Shanayahours"></span>
+	<div class="smalltext">Hours</div>
+  </div>
+
+</div>
+<h1 id="message">Vidar Kapoor</h1>
+<div id="clockdiv">
+  <div id="Vidaryears" >
+    <span class="Vidaryears"></span>
+	<div class="smalltext">Years</div>
+  </div>
+
+  <div id="Vidarmonths">
+    <span class="Vidarmonths"></span>
+	<div class="smalltext">Months</div>
+  </div>
+  <div id="Vidardays">
+    <span class="Vidardays"></span>
+	<div class="smalltext">Days</div>
+  </div>
+  <div id="Vidarhours">
+    <span class="Vidarhours"></span>
 	<div class="smalltext">Hours</div>
   </div>
 
@@ -103,7 +124,12 @@ h1{
        } else {
          months =  currentDate.getMonth() - babyDate.getMonth();
        }
-       return months;
+	   if (currentDate.getDate() > babyDate.getDate()){
+	          return months;}
+			  else{
+			  return months - 1
+			  }
+
       }
 
       function calculateDays(babyDate, currentDate){
@@ -116,21 +142,34 @@ h1{
 			 }
 	      return days;
       }
-    var baby         = new Date(Date.UTC(2016,06,11,13,3,0));
-	var now          = new Date();
-    var diffDate     = new Date(now - baby);
+    var Shanayababy         = new Date(Date.UTC(2016,06,11,13,3,0));
+	var Vidarbaby           = new Date(Date.UTC(2020,09,15,01,28,0));
+	var now                 = new Date();
+    var ShanayadiffDate     = new Date(now - Shanayababy);
+    var VidardiffDate       = new Date(now - Vidarbaby);
    
 
-    var minutes      = Math.abs(Math.floor((diffDate / 1000 / 60) % 60));
-    var hours        = Math.abs(Math.floor((diffDate / (1000 * 60 * 60)) % 24));
-	var days         = calculateDays(baby, now);
-	var months       = calculateMonths(baby, now);
-	var years        = diffDate.getUTCFullYear() - 1970;
+    var Shanayaminutes      = Math.abs(Math.floor((ShanayadiffDate / 1000 / 60) % 60));
+    var Shanayahours        = Math.abs(Math.floor((ShanayadiffDate / (1000 * 60 * 60)) % 24));
+	var Shanayadays         = calculateDays(Shanayababy, now);
+	var Shanayamonths       = calculateMonths(Shanayababy, now);
+	var Shanayayears        = ShanayadiffDate.getUTCFullYear() - 1970;
 
-    document.getElementsByClassName("hours")[0].innerHTML   = ('0' + hours).slice(-2);
-    document.getElementsByClassName("days")[0].innerHTML    = ('0' + days).slice(-2);
-    document.getElementsByClassName("months")[0].innerHTML  = ('0' + months).slice(-2);
-	document.getElementsByClassName("years")[0].innerHTML  = ('0' + years).slice(-2);
+    document.getElementsByClassName("Shanayahours")[0].innerHTML   = ('0' + Shanayahours).slice(-2);
+    document.getElementsByClassName("Shanayadays")[0].innerHTML    = ('0' + Shanayadays).slice(-2);
+    document.getElementsByClassName("Shanayamonths")[0].innerHTML  = ('0' + Shanayamonths).slice(-2);
+	document.getElementsByClassName("Shanayayears")[0].innerHTML   = ('0' + Shanayayears).slice(-2);
+	
+    var Vidarminutes      = Math.abs(Math.floor((VidardiffDate / 1000 / 60) % 60));
+    var Vidarhours        = Math.abs(Math.floor((VidardiffDate / (1000 * 60 * 60)) % 24));
+	var Vidardays         = calculateDays(Vidarbaby, now);
+	var Vidarmonths       = calculateMonths(Vidarbaby, now);
+	var Vidaryears        = VidardiffDate.getUTCFullYear() - 1970;
+
+    document.getElementsByClassName("Vidarhours")[0].innerHTML   = ('0' + Vidarhours).slice(-2);
+    document.getElementsByClassName("Vidardays")[0].innerHTML    = ('0' + Vidardays).slice(-2);
+    document.getElementsByClassName("Vidarmonths")[0].innerHTML  = ('0' + Vidarmonths).slice(-2);
+	document.getElementsByClassName("Vidaryears")[0].innerHTML   = ('0' + Vidaryears).slice(-2);
 
   </script>
-</html>
+	  </html>
